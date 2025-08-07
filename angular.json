@@ -89,6 +89,11 @@
       }
     }
   },
+  "schematics": {
+    "@schematics/angular:service": {
+      "type": "service"
+    }
+  },
   "cli": {
     "analytics": "9dd67e8d-a2a8-4a37-9724-47793c97282a"
   }
