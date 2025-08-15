@@ -1,1 +1,13 @@
-<p>coffee works!</p>
+<div class="book-grid">
+  <!-- @if () {} -->
+
+  @for (coffee of coffeeData; track coffee.coffeeId) {
+  <div class="book-card">
+    <h3>{{ coffee.name }}</h3>
+    <p>{{ coffee.coffeeType }}</p>
+    <p>{{ coffee.description }}</p>
+    <p class="price">₹{{ coffee.price }}</p>
+    <button>Buy Now</button>
+  </div>
+  }
+</div>
