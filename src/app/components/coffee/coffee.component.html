@@ -1,8 +1,15 @@
+<app-nav-bar> </app-nav-bar>
+
 <div class="book-grid">
   <!-- @if () {} -->
 
   @for (coffee of coffeeData; track coffee.coffeeId) {
   <div class="book-card">
+    <img
+      [src]="coffee.imageUrl || 'no-image-default.png'"
+      alt="{{ coffee.name }}"
+    />
+
     <h3>{{ coffee.name }}</h3>
     <p>{{ coffee.coffeeType }}</p>
     <p>{{ coffee.description }}</p>

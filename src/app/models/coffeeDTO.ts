@@ -4,4 +4,5 @@ export interface CoffeeDTO {
   coffeeType: string;
   description: string;
   price: number;
+  imageUrl: string;
 }

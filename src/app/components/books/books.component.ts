@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { BookDTO } from '../../models/bookDTO';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, NavBarComponent],
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css'],
 })
