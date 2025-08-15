@@ -1,12 +1,28 @@
-<h1 style="text-align: center; color: rgb(167, 28, 236)">
+<!-- <h1 style="text-align: center; color: rgb(167, 28, 236)">
   Welcome To The BookWarm Cafe!☕📚
-</h1>
+</h1> -->
 
 <!-- <ul>
   <li *ngFor="let book of booksData">
     <strong> {{ book.title }} by {{ book.authorName }} </strong>
   </li>
 </ul> -->
+
+<nav class="navbar">
+  <div class="navbar-left">
+    <img src="bookwarm-logo.png" alt="BookWarm Logo" />
+    <span style="margin-left: 10px">BookWarm Café ☕📚</span>
+  </div>
+
+  <div class="navbar-right">
+    <!-- <a href="/home">Home</a>
+    <a href="/books">Books</a>
+    <a href="/about">About Us</a>
+    <a href="/contact">Contact Us</a> -->
+
+    <button class="coffee-btn" [routerLink]="'/coffee'">I want Coffee!</button>
+  </div>
+</nav>
 
 <div class="search-container">
   <input
