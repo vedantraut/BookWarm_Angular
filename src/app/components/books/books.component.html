@@ -1,4 +1,6 @@
-<h2 style="text-align: center">Welcome To The BookWarm Cafe!☕📚</h2>
+<h1 style="text-align: center; color: rgb(167, 28, 236)">
+  Welcome To The BookWarm Cafe!☕📚
+</h1>
 
 <!-- <ul>
   <li *ngFor="let book of booksData">
@@ -6,8 +8,38 @@
   </li>
 </ul> -->
 
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Enter title of the book"
+    [(ngModel)]="searchText"
+  />
+</div>
+
 <div class="book-grid">
-  <div class="book-card" *ngFor="let book of booksData">
+  <!-- <div *ngIf="filteredBooks.length > 0; else noBooksFound"></div> -->
+
+  @if (filteredBooks.length > 0) { @for (book of filteredBooks; track book.id) {
+  <div class="book-card">
+    <img
+      [src]="book.imageUrl || 'no-image-default.png'"
+      alt="{{ book.title }}"
+    />
+
+    <h3>{{ book.title }}</h3>
+    <p>By {{ book.authorName }}</p>
+    <p class="price">₹{{ book.price }}</p>
+    <button>Buy Now</button>
+    <button class="button-del">Delete</button>
+  </div>
+  } } @else {
+  <div class="no-found">
+    <img src="no-books-found.png" alt="No books found" />
+    <p>No books found for "{{ searchText }}"</p>
+  </div>
+  }
+
+  <!-- <div class="book-card" *ngFor="let book of booksData">
     <img
       [src]="book.imageUrl || 'no-image-default.png'"
       alt="{{ book.title }}"
@@ -16,5 +48,6 @@
     <p>By {{ book.authorName }}</p>
     <p class="price">₹{{ book.price }}</p>
     <button>Buy Now</button>
-  </div>
+    <button class="button-del">Delete</button>
+  </div> -->
 </div>
