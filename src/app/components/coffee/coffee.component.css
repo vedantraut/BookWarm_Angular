@@ -1,3 +1,4 @@
+/* Books Grid */
 .book-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -59,4 +60,52 @@
 }
 .book-card .button-del:hover {
   background-color: #e60101;
+}
+
+/* Books Not Found */
+.no-found {
+  text-align: center;
+  padding: 40px;
+}
+
+.no-found img {
+  max-width: 250px;
+  opacity: 0.8;
+}
+
+.no-found p {
+  font-size: 18px;
+  color: #666;
+  margin-top: 15px;
+}
+
+/* Search Container */
+.search-container {
+  display: flex;
+  justify-content: left;
+  margin: 20px 0;
+}
+
+.search-container input {
+  width: 300px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Highlight on focus */
+.search-container input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Grid for books */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }

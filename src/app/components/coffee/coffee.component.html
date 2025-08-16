@@ -1,9 +1,16 @@
 <app-nav-bar> </app-nav-bar>
 
-<div class="book-grid">
-  <!-- @if () {} -->
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Find your favorite coffee"
+    [(ngModel)]="searchText"
+  />
+</div>
 
-  @for (coffee of coffeeData; track coffee.coffeeId) {
+<div class="book-grid">
+  @if (filteredCoffees.length > 0) { @for (coffee of filteredCoffees; track
+  coffee.coffeeId) {
   <div class="book-card">
     <img
       [src]="coffee.imageUrl || 'no-image-default.png'"
@@ -11,10 +18,15 @@
     />
 
     <h3>{{ coffee.name }}</h3>
-    <p>{{ coffee.coffeeType }}</p>
+    <p>{{ coffee.coffeetype }}</p>
     <p>{{ coffee.description }}</p>
     <p class="price">₹{{ coffee.price }}</p>
     <button>Buy Now</button>
+  </div>
+  } } @else{
+  <div class="no-found">
+    <!-- <img src="no-coffee-found.png" alt="No Coffees Found" /> -->
+    <p>OOPS! No coffees found for "{{ searchText }}"</p>
   </div>
   }
 </div>
