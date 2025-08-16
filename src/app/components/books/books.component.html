@@ -1,21 +1,54 @@
-<!-- <h1 style="text-align: center; color: rgb(167, 28, 236)">
-  Welcome To The BookWarm Cafe!☕📚
-</h1> -->
-
-<!-- <ul>
-  <li *ngFor="let book of booksData">
-    <strong> {{ book.title }} by {{ book.authorName }} </strong>
-  </li>
-</ul> -->
-
 <app-nav-bar> </app-nav-bar>
 
 <div class="search-container">
   <input
     type="text"
-    placeholder="Enter title of the book"
+    placeholder="Find your favorite book"
     [(ngModel)]="searchText"
   />
+
+  <div class="filter-wrapper">
+    <span class="filter-icon" (click)="toggleFilter()">
+      <i class="fas fa-filter"></i>
+    </span>
+
+    @if( toggleFilterDropdown) {
+    <div class="filter-dropdown">
+      <label>
+        <input
+          type="radio"
+          name="filter"
+          value="title"
+          [(ngModel)]="searchBy"
+        />
+        Title
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="filter"
+          value="author"
+          [(ngModel)]="searchBy"
+        />
+        Author
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="filter"
+          value="price"
+          [(ngModel)]="searchBy"
+        />
+        Price
+      </label>
+      <!-- <select [(ngModel)]="searchBy">
+        <option value="title">Title</option>
+        <option value="author">Author Name</option>
+        <option value="price">Price</option>
+      </select> -->
+    </div>
+    }
+  </div>
 </div>
 
 <div class="book-grid">
@@ -37,7 +70,7 @@
   } } @else {
   <div class="no-found">
     <img src="no-books-found.png" alt="No books found" />
-    <p>No books found for "{{ searchText }}"</p>
+    <p>OOPS! No books found for "{{ searchText }}"</p>
   </div>
   }
 

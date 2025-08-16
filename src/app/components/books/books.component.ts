@@ -17,26 +17,53 @@ export class BooksComponent {
   constructor(private bookservice: BookService) {}
 
   booksData: BookDTO[] = [];
-  filteredBooksData: BookDTO[] = [];
+  // filteredBooksData: BookDTO[] = [];
   searchText: string = '';
+  searchBy: string = 'title';
+  toggleFilterDropdown: boolean = false;
 
   ngOnInit() {
     this.bookservice.getAllBooks().subscribe((data) => {
       console.log('all the books -- ', data);
       this.booksData = data as any[];
-      this.filteredBooksData = [...this.booksData];
+      // this.filteredBooksData = [...this.booksData];
     });
   }
 
   get filteredBooks(): BookDTO[] {
-    if (!this.searchText) {
+    if (!this.searchText.trim()) {
       return this.booksData;
     }
 
-    this.filteredBooksData = this.booksData.filter((book) =>
-      book.title.toLowerCase().startsWith(this.searchText.toLowerCase())
-    );
+    const searchText = this.searchText.trim().toLowerCase();
+    // return this.booksData.filter((book) =>
+    //   book.title.toLowerCase().startsWith(this.searchText.toLowerCase())
+    // );
 
-    return this.filteredBooksData;
+    console.log('Search Text -- ' + this.searchText);
+    console.log('Search By -- ' + this.searchBy);
+
+    switch (this.searchBy) {
+      case 'title':
+        return this.booksData.filter((book) =>
+          book.title.toLowerCase().startsWith(searchText)
+        );
+      case 'author':
+        return this.booksData.filter((book) =>
+          book.authorName.toLowerCase().startsWith(searchText)
+        );
+      case 'price':
+        return this.booksData.filter((book) =>
+          book.price.toString().startsWith(searchText)
+        );
+      default:
+        return this.booksData; // Default case if no valid searchBy is provided
+    }
+
+    // return this.filteredBooksData;
+  }
+
+  toggleFilter() {
+    this.toggleFilterDropdown = !this.toggleFilterDropdown;
   }
 }
