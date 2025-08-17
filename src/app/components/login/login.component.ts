@@ -28,9 +28,10 @@ export class LoginComponent {
     console.log('Email:', this.authRequest.emailId);
     console.log('Password:', this.authRequest.password);
 
-    this.loginService.login(this.authRequest).subscribe((response) => {
+    this.loginService.login(this.authRequest).subscribe((response: any) => {
       console.log('Login response:', response);
       // Handle successful login response
+      localStorage.setItem('authToken', response.token);
     });
   }
 }
