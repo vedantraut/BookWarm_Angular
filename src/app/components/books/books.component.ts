@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { CommonModule } from '@angular/common';
 import { BookDTO } from '../../models/bookDTO';
@@ -21,6 +21,9 @@ export class BooksComponent {
   searchText: string = '';
   searchBy: string = 'title';
   toggleFilterDropdown: boolean = false;
+
+  @ViewChild('filterDropdown') filterDropdown!: ElementRef | undefined;
+  @ViewChild('filterIcon') filterIcon!: ElementRef | undefined;
 
   ngOnInit() {
     this.bookservice.getAllBooks().subscribe((data) => {
@@ -65,5 +68,22 @@ export class BooksComponent {
 
   toggleFilter() {
     this.toggleFilterDropdown = !this.toggleFilterDropdown;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (!this.toggleFilterDropdown) return;
+
+    const dropdown = this.filterDropdown?.nativeElement;
+    const icon = this.filterIcon?.nativeElement;
+
+    if (
+      dropdown &&
+      !dropdown.contains(event.target) &&
+      icon &&
+      !icon.contains(event.target)
+    ) {
+      this.toggleFilterDropdown = false;
+    }
   }
 }

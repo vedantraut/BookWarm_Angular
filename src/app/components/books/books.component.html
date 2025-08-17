@@ -8,12 +8,12 @@
   />
 
   <div class="filter-wrapper">
-    <span class="filter-icon" (click)="toggleFilter()">
+    <span class="filter-icon" #filterIcon (click)="toggleFilter()">
       <i class="fas fa-filter"></i>
     </span>
 
     @if( toggleFilterDropdown) {
-    <div class="filter-dropdown">
+    <div class="filter-dropdown" #filterDropdown>
       <label>
         <input
           type="radio"
