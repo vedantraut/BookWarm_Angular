@@ -21,7 +21,9 @@
         required
       />
     </div>
-    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    <button type="submit" [disabled]="!loginForm.valid" (click)="onLogin()">
+      Login
+    </button>
     <button type="button" class="register-btn">Register</button>
   </form>
 </div>

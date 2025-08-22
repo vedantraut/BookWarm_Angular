@@ -6,6 +6,39 @@
     placeholder="Find your favorite coffee"
     [(ngModel)]="searchText"
   />
+
+  <div class="filter-wrapper">
+    <span class="filter-icon" #filterIcon (click)="toggleFilter()">
+      <i class="fas fa-filter"></i>
+    </span>
+
+    @if( toggleFilterDropdown) {
+    <div class="filter-dropdown" #filterDropdown>
+      <label>
+        <input type="radio" name="filter" value="name" [(ngModel)]="searchBy" />
+        Name
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="filter"
+          value="coffeeType"
+          [(ngModel)]="searchBy"
+        />
+        Coffee Type
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="filter"
+          value="price"
+          [(ngModel)]="searchBy"
+        />
+        Price
+      </label>
+    </div>
+    }
+  </div>
 </div>
 
 <div class="book-grid">

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { AuthenticationRequest } from '../../models/authentication-request';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent {
     password: '',
   };
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -32,6 +33,8 @@ export class LoginComponent {
       console.log('Login response:', response);
       // Handle successful login response
       localStorage.setItem('authToken', response.token);
+
+      this.router.navigate(['/books']);
     });
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { CoffeeService } from '../../services/coffee.service';
 import { CoffeeDTO } from '../../models/coffeeDTO';
 import { RouterModule } from '@angular/router';
@@ -17,6 +17,11 @@ export class CoffeeComponent {
   coffeeData: CoffeeDTO[] = [];
   filteredCoffeesData: CoffeeDTO[] = [];
   searchText: string = '';
+  searchBy: any;
+  toggleFilterDropdown: boolean = false;
+
+  @ViewChild('filterDropdown') filterDropdown!: ElementRef | undefined;
+  @ViewChild('filterIcon') filterIcon!: ElementRef | undefined;
 
   ngOnInit() {
     this.coffeeService.getCoffees().subscribe((data) => {
@@ -34,14 +39,54 @@ export class CoffeeComponent {
     if (!this.searchText) {
       return this.coffeeData;
     }
-    console.log('Search Text -- ' + this.searchText);
 
-    return this.coffeeData.filter((coffee) =>
-      coffee.name.toLowerCase().startsWith(this.searchText.toLowerCase())
-    );
+    // return this.coffeeData.filter((coffee) =>
+    //   coffee.name.toLowerCase().startsWith(this.searchText.toLowerCase())
+    // );
+
+    const searchText = this.searchText.trim().toLowerCase();
 
     console.log('Filtered Coffees -- ' + this.filteredCoffeesData);
 
-    // return this.filteredCoffeesData;
+    console.log('Search Text -- ' + this.searchText);
+    console.log('Search By -- ' + this.searchBy);
+
+    switch (this.searchBy) {
+      case 'name':
+        return this.coffeeData.filter((coffee) =>
+          coffee.name.toLowerCase().startsWith(searchText)
+        );
+      case 'coffeeType':
+        return this.coffeeData.filter((coffee) =>
+          coffee.coffeeType.toLowerCase().startsWith(searchText)
+        );
+      case 'price':
+        return this.coffeeData.filter((coffee) =>
+          coffee.price.toString().startsWith(searchText)
+        );
+      default:
+        return this.coffeeData; // Default case if no valid searchBy is provided
+    }
+  }
+
+  toggleFilter() {
+    this.toggleFilterDropdown = !this.toggleFilterDropdown;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (!this.toggleFilterDropdown) return;
+
+    const dropdown = this.filterDropdown?.nativeElement;
+    const icon = this.filterIcon?.nativeElement;
+
+    if (
+      dropdown &&
+      icon &&
+      !dropdown.contains(event.target) &&
+      !icon.contains(event.target)
+    ) {
+      this.toggleFilterDropdown = false;
+    }
   }
 }
