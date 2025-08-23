@@ -77,8 +77,9 @@ export class BooksComponent {
 
   openOrderPopUp(book: any) {
     this.OrderPopup = !this.OrderPopup;
-
     this.selectedBook = book;
+    this.coffeeOrdered = false;
+
     console.log('Selected Book -- ', this.selectedBook);
   }
 
@@ -89,11 +90,17 @@ export class BooksComponent {
   orderCoffee() {
     this.coffeeOrdered = true;
 
-    this.router.navigate(['/coffee']);
+    this.router.navigate(['/coffee'], {
+      state: { selectedBook: this.selectedBook },
+    });
   }
 
   checkout() {
-    this.router.navigate(['/checkout']);
+    console.log('Selected Book in Checkout -- ', this.selectedBook);
+
+    this.router.navigate(['/checkout'], {
+      state: { bookId: this.selectedBook.id },
+    });
   }
 
   @HostListener('document:click', ['$event'])

@@ -10,6 +10,11 @@ export class BookService {
 
   private url = constant.url;
 
+  getBookById(id: any) {
+    return this.Http.get(this.url + 'books/getBook', {
+      params: { id },
+    });
+  }
   getAllBooks() {
     return this.Http.get(this.url + 'books/getAllBooks');
   }

@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { CoffeeService } from '../../services/coffee.service';
 import { CoffeeDTO } from '../../models/coffeeDTO';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
 
@@ -12,18 +12,24 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './coffee.component.css',
 })
 export class CoffeeComponent {
-  constructor(private coffeeService: CoffeeService) {}
+  constructor(private coffeeService: CoffeeService, private router: Router) {}
 
   coffeeData: CoffeeDTO[] = [];
   filteredCoffeesData: CoffeeDTO[] = [];
   searchText: string = '';
   searchBy: any;
   toggleFilterDropdown: boolean = false;
+  selectedBook: any;
 
   @ViewChild('filterDropdown') filterDropdown!: ElementRef | undefined;
   @ViewChild('filterIcon') filterIcon!: ElementRef | undefined;
 
   ngOnInit() {
+    const nav = this.router.getCurrentNavigation();
+
+    this.selectedBook = nav?.extras.state?.['selectedBook'];
+    console.log('Selected Book in Coffee Component -- ', this.selectedBook);
+
     this.coffeeService.getCoffees().subscribe((data) => {
       console.log('All the coffees in the db are -- ', data);
 
@@ -88,5 +94,11 @@ export class CoffeeComponent {
     ) {
       this.toggleFilterDropdown = false;
     }
+  }
+
+  checkout() {
+    this.router.navigate(['/checkout'], {
+      state: { bookId: this.selectedBook.id },
+    });
   }
 }
