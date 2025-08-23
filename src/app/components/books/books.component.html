@@ -64,10 +64,42 @@
     <h3>{{ book.title }}</h3>
     <p>By {{ book.authorName }}</p>
     <p class="price">₹{{ book.price }}</p>
-    <button>Buy Now</button>
+    <button (click)="openOrderPopUp(book)">Buy Now</button>
     <button class="button-del">Delete</button>
   </div>
-  } } @else {
+
+  @if(OrderPopup){
+  <div class="popup-backdrop">
+    <div class="popup-content">
+      <span class="close" (click)="closeOrderPopUp()">&times;</span>
+      <h2>Selected Book:</h2>
+      <p>
+        <img
+          class="popup-book-img"
+          [src]="selectedBook.imageUrl || 'no-image-default.png'"
+          alt="{{ selectedBook.title }}"
+        />
+        <strong class="popup-book-title">{{ selectedBook.title }}</strong>
+      </p>
+
+      @if(!coffeeOrdered){
+      <p>Looks like you haven't tried our coffee yet!</p>
+      <button (click)="orderCoffee()">Try Our Coffee!</button>
+      } @else{
+      <p>
+        Thank you for ordering a coffee! Enjoy your read with a warm cup of
+        coffee.
+      </p>
+      <h2>Selected Coffee:</h2>
+      <p>
+        <strong>[Ordered Coffee]</strong>
+      </p>
+      <button (click)="checkout()">Place Order</button>
+      }
+    </div>
+  </div>
+
+  }}} @else {
   <div class="no-found">
     <img src="no-books-found.png" alt="No books found" />
     <p>OOPS! No books found for "{{ searchText }}"</p>

@@ -3,7 +3,7 @@ import { BookService } from '../../services/book.service';
 import { CommonModule } from '@angular/common';
 import { BookDTO } from '../../models/bookDTO';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
@@ -14,13 +14,18 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
   styleUrls: ['./books.component.css'],
 })
 export class BooksComponent {
-  constructor(private bookservice: BookService) {}
+  constructor(private bookservice: BookService, private router: Router) {}
 
   booksData: BookDTO[] = [];
   // filteredBooksData: BookDTO[] = [];
   searchText: string = '';
   searchBy: string = 'title';
   toggleFilterDropdown: boolean = false;
+  OrderPopup: boolean = false;
+
+  coffeeOrdered: boolean = false;
+
+  selectedBook!: BookDTO;
 
   @ViewChild('filterDropdown') filterDropdown!: ElementRef | undefined;
   @ViewChild('filterIcon') filterIcon!: ElementRef | undefined;
@@ -68,6 +73,27 @@ export class BooksComponent {
 
   toggleFilter() {
     this.toggleFilterDropdown = !this.toggleFilterDropdown;
+  }
+
+  openOrderPopUp(book: any) {
+    this.OrderPopup = !this.OrderPopup;
+
+    this.selectedBook = book;
+    console.log('Selected Book -- ', this.selectedBook);
+  }
+
+  closeOrderPopUp() {
+    this.OrderPopup = !this.OrderPopup;
+  }
+
+  orderCoffee() {
+    this.coffeeOrdered = true;
+
+    this.router.navigate(['/coffee']);
+  }
+
+  checkout() {
+    this.router.navigate(['/checkout']);
   }
 
   @HostListener('document:click', ['$event'])
