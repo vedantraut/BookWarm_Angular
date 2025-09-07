@@ -46,7 +46,9 @@ export class CheckoutComponent {
     this.checkoutservice.checkout(this.orderdto).subscribe((data) => {
       console.log('Checkout response -- ', data);
       alert('Checkout successful!');
-      // this.router.navigate(['/books']);
+      this.router.navigate(['/order-success'], {
+        state: { bookId: this.selectedBook.id },
+      });
     });
   }
 }
