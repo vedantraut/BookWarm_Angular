@@ -1,20 +1,24 @@
-<!-- *ngIf="selectedBook" -->
-<div>
-  <h2>Checkout</h2>
-  <img
-    [src]="selectedBook.imageUrl"
-    alt="{{ selectedBook.title }}"
-    style="
-      width: 120px;
-      height: 160px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px #a71cec33;
-    "
-  />
-  <h3>{{ selectedBook.title }}</h3>
-  <p>By {{ selectedBook.authorName }}</p>
-  <p>Price: ₹{{ selectedBook.price }}</p>
-  <hr />
-  <h4>Total: ₹{{ selectedBook.price }}</h4>
-  <button>Place Order</button>
+<div class="checkout-container">
+  @if(selectedBook){
+  <!-- *ngIf="selectedBook" -->
+  <div class="book-details">
+    <img
+      [src]="selectedBook.imageUrl"
+      alt="{{ selectedBook.title }}"
+      class="book-image"
+    />
+    <div class="book-info">
+      <h2>{{ selectedBook.title }}</h2>
+      <p>By {{ selectedBook.authorName }}</p>
+      <p class="price">Price: ₹{{ selectedBook.price }}</p>
+    </div>
+  </div>
+
+  <!-- *ngIf="selectedBook" -->
+  <div class="order-summary">
+    <h3>Order Summary</h3>
+    <p>Total: ₹{{ selectedBook.price }}</p>
+    <button class="place-order-btn" (click)="checkout()">Place Order</button>
+  </div>
+  }
 </div>
