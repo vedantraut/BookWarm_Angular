@@ -5,88 +5,106 @@
   background: #fff;
   border-radius: 14px;
   box-shadow: 0 4px 24px rgba(167, 28, 236, 0.1);
-  padding: 32px;
+  padding: 32px 28px 28px 28px;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+/* Left: Book and Coffee details */
+.checkout-left {
+  flex: 1.2;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  align-items: flex-start;
+  gap: 18px;
 }
 
-.book-details,
-.coffee-details {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  padding: 16px;
-  background: #faf7ff;
+.book-img {
+  width: 120px;
+  height: 160px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(167, 28, 236, 0.1);
-}
-
-.book-image,
-.coffee-image {
-  width: 100px;
-  height: 140px;
-  border-radius: 8px;
   object-fit: cover;
-  box-shadow: 0 2px 8px rgba(167, 28, 236, 0.2);
+  box-shadow: 0 4px 16px rgba(167, 28, 236, 0.18);
+  border: 3px solid #f3e9ff;
+  background: #faf7ff;
 }
 
-.book-info,
-.coffee-info {
-  flex: 1;
-}
-
-.book-info h2,
-.coffee-info h2 {
+.book-title {
   font-size: 1.2rem;
   color: #a71cec;
   font-weight: 600;
   margin: 0 0 4px 0;
 }
 
-.book-info p,
-.coffee-info p {
+.book-author {
   color: #555;
   font-size: 1rem;
-  margin: 0 0 8px 0;
+  margin-bottom: 8px;
 }
 
-.price {
-  color: #a71cec;
-  font-weight: 600;
-  font-size: 1.1rem;
+.coffee-info {
+  margin-top: 10px;
+  padding: 10px 16px;
+  background: #f3e9ff;
+  border-radius: 8px;
+  color: #7d1bbd;
+  font-weight: 500;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.order-summary {
+/* Right: Price summary */
+.checkout-right {
+  flex: 1;
   background: #faf7ff;
   border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(167, 28, 236, 0.1);
-  text-align: center;
+  padding: 24px 20px;
+  box-shadow: 0 2px 8px #a71cec18;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 180px;
 }
 
-.order-summary h3 {
+.price-label {
+  color: #444;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.price-value {
+  color: #a71cec;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.total-label {
   color: #7d1bbd;
-  font-size: 1.2rem;
-  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+  margin-top: 10px;
 }
 
-.order-summary p {
+.total-value {
   color: #a71cec;
   font-size: 1.3rem;
   font-weight: 700;
-  margin: 0 0 16px 0;
+  margin-bottom: 18px;
 }
 
 .place-order-btn {
   width: 100%;
-  padding: 12px 0;
+  padding: 10px 0;
   background: #a71cec;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 7px;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 500;
+  margin-top: 10px;
   cursor: pointer;
   transition: background 0.2s;
 }

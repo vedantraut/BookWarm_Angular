@@ -1,5 +1,5 @@
 .order-success-container {
-  max-width: 400px;
+  max-width: 500px;
   margin: 80px auto;
   background: #fff;
   border-radius: 14px;
@@ -13,12 +13,31 @@
 }
 .ordered-book-details {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 18px;
-  margin-bottom: 18px;
-  justify-content: center;
+  margin-bottom: 20px;
 }
-.book-image {
+.book-coffee-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 15px;
+  background: #faf7ff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(167, 28, 236, 0.15);
+}
+.msg {
+  font-style: italic;
+  color: #a71cec;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+}
+.book-image,
+.coffee-image {
   width: 80px;
   height: 110px;
   border-radius: 8px;
@@ -27,21 +46,25 @@
   border: 2px solid #f3e9ff;
   background: #faf7ff;
 }
-.book-info {
+.book-info,
+.coffee-info {
   text-align: left;
 }
-.book-title {
+.book-title,
+.coffee-name {
   font-size: 1.1rem;
   color: #a71cec;
   font-weight: 600;
   margin: 0 0 4px 0;
 }
-.book-author {
+.book-author,
+.coffee-type {
   color: #555;
   font-size: 0.98rem;
   margin-bottom: 6px;
 }
-.book-price {
+.book-price,
+.coffee-price {
   color: #7d1bbd;
   font-size: 1rem;
   font-weight: 500;

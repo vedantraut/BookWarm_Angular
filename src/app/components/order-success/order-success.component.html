@@ -1,15 +1,32 @@
 <div class="order-success-container">
   <h2>Order Placed Successfully! 🤓</h2>
   <div class="ordered-book-details">
-    <img
-      [src]="orderedBook.imageUrl"
-      alt="{{ orderedBook.title }}"
-      class="book-image"
-    />
-    <div class="book-info">
-      <h3 class="book-title">{{ orderedBook.title }}</h3>
-      <p class="book-author">By {{ orderedBook.authorName }}</p>
-      <p class="book-price">Price: ₹{{ orderedBook.price }}</p>
+    <div class="book-coffee-section">
+      <!-- <div class="book-section"> -->
+      <img
+        [src]="orderedBook.imageUrl"
+        alt="{{ orderedBook.title }}"
+        class="book-image"
+      />
+      <div class="book-info">
+        <h3 class="book-title">{{ orderedBook.title }}</h3>
+        <p class="book-author">By {{ orderedBook.authorName }}</p>
+        <p class="book-price">Price: ₹{{ orderedBook.price }}</p>
+      </div>
+      <!-- </div> -->
+      <p class="msg">Paired With a good cup of...</p>
+      <!-- <div class="coffee-section"> -->
+      <img
+        [src]="orderedCoffee.imageUrl"
+        alt="{{ orderedCoffee.name }}"
+        class="coffee-image"
+      />
+      <div class="coffee-info">
+        <h3 class="coffee-name">{{ orderedCoffee.name }}</h3>
+        <p class="coffee-type">{{ orderedCoffee.coffeeType }}</p>
+        <p class="coffee-price">Price: ₹{{ orderedCoffee.price }}</p>
+      </div>
+      <!-- </div> -->
     </div>
   </div>
   <p>Thank you for coming to <span class="brand">BookWarm</span>!</p>

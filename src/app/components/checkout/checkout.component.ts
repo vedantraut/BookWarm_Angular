@@ -59,7 +59,10 @@ export class CheckoutComponent {
       console.log('Checkout response -- ', data);
       alert('Checkout successful!');
       this.router.navigate(['/order-success'], {
-        state: { bookId: this.selectedBook.id },
+        state: {
+          bookId: this.selectedBook.id,
+          coffeeId: this.selectedCoffee.coffeeId,
+        },
       });
     });
   }
