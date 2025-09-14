@@ -54,7 +54,7 @@
     <p>{{ coffee.coffeeType }}</p>
     <p>{{ coffee.description }}</p>
     <p class="price">₹{{ coffee.price }}</p>
-    <button>Buy Now</button>
+    <button (click)="buyCoffee(coffee)">Buy Now</button>
   </div>
   } } @else{
   <div class="no-found">

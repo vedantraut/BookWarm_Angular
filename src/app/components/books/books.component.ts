@@ -91,7 +91,7 @@ export class BooksComponent {
     this.coffeeOrdered = true;
 
     this.router.navigate(['/coffee'], {
-      state: { selectedBook: this.selectedBook },
+      state: { bookId: this.selectedBook.id },
     });
   }
 

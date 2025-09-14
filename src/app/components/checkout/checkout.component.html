@@ -1,6 +1,5 @@
 <div class="checkout-container">
   @if(selectedBook){
-  <!-- *ngIf="selectedBook" -->
   <div class="book-details">
     <img
       [src]="selectedBook.imageUrl"
@@ -13,11 +12,25 @@
       <p class="price">Price: ₹{{ selectedBook.price }}</p>
     </div>
   </div>
-
-  <!-- *ngIf="selectedBook" -->
+  } @if(selectedCoffee){
+  <div class="coffee-details">
+    <img
+      [src]="selectedCoffee.imageUrl"
+      alt="{{ selectedCoffee.name }}"
+      class="coffee-image"
+    />
+    <div class="coffee-info">
+      <h2>{{ selectedCoffee.name }}</h2>
+      <p>Type: {{ selectedCoffee.coffeeType }}</p>
+      <p class="price">Price: ₹{{ selectedCoffee.price }}</p>
+    </div>
+  </div>
+  } @if(selectedBook || selectedCoffee){
   <div class="order-summary">
     <h3>Order Summary</h3>
-    <p>Total: ₹{{ selectedBook.price }}</p>
+    <p>
+      Total: ₹{{ (selectedBook?.price || 0) + (selectedCoffee?.price || 0) }}
+    </p>
     <button class="place-order-btn" (click)="checkout()">Place Order</button>
   </div>
   }

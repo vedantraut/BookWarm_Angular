@@ -13,4 +13,10 @@ export class CoffeeService {
   getCoffees() {
     return this.Http.get(this.url + 'coffee/getAllCoffees');
   }
+
+  getCoffeeById(id: number) {
+    return this.Http.get(this.url + 'coffee/getCoffee', {
+      params: { id },
+    });
+  }
 }

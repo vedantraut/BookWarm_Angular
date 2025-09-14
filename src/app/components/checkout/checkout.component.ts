@@ -4,6 +4,7 @@ import { BookService } from '../../services/book.service';
 import { BookDTO } from '../../models/bookDTO';
 import { CheckoutService } from '../../services/checkout.service';
 import { OrderDTO } from '../../models/orderDTO';
+import { CoffeeService } from '../../services/coffee.service';
 
 @Component({
   selector: 'app-checkout',
@@ -15,10 +16,12 @@ export class CheckoutComponent {
   constructor(
     private router: Router,
     private bookService: BookService,
-    private checkoutservice: CheckoutService
+    private checkoutservice: CheckoutService,
+    private coffeeService: CoffeeService
   ) {}
 
   selectedBook: any;
+  selectedCoffee: any;
   orderdto: OrderDTO = {} as OrderDTO;
 
   ngOnInit() {
@@ -27,11 +30,20 @@ export class CheckoutComponent {
     const bookId = history.state.bookId;
     console.log('Book ID in Checkout Component -- ', bookId);
 
-    if (bookId) {
+    const coffeeId = history.state.coffeeId;
+    console.log('Coffee ID in Checkout Component -- ', coffeeId);
+
+    if (bookId && coffeeId) {
       this.bookService.getBookById(bookId).subscribe((data) => {
         console.log('Book details in Checkout Component -- ', data);
 
         this.selectedBook = data;
+      });
+
+      this.coffeeService.getCoffeeById(coffeeId).subscribe((data) => {
+        console.log('Coffee details in Checkout Component -- ', data);
+
+        this.selectedCoffee = data;
       });
     }
   }
@@ -39,7 +51,7 @@ export class CheckoutComponent {
   checkout() {
     console.log('this.selectedBook.id -- ', this.selectedBook.id);
     this.orderdto.bookId = this.selectedBook.id;
-    this.orderdto.coffeeId = 1; // Assuming a default coffee ID for demonstration
+    this.orderdto.coffeeId = this.selectedCoffee.coffeeId; // Assuming a default coffee ID for demonstration
 
     console.log('Order DTO -- ', this.orderdto);
 

@@ -4,6 +4,7 @@ import { CoffeeDTO } from '../../models/coffeeDTO';
 import { Router, RouterModule } from '@angular/router';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
+import { BookService } from '../../services/book.service';
 
 @Component({
   selector: 'app-coffee',
@@ -12,7 +13,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './coffee.component.css',
 })
 export class CoffeeComponent {
-  constructor(private coffeeService: CoffeeService, private router: Router) {}
+  constructor(
+    private coffeeService: CoffeeService,
+    private router: Router,
+    private bookService: BookService
+  ) {}
 
   coffeeData: CoffeeDTO[] = [];
   filteredCoffeesData: CoffeeDTO[] = [];
@@ -20,15 +25,26 @@ export class CoffeeComponent {
   searchBy: any;
   toggleFilterDropdown: boolean = false;
   selectedBook: any;
+  OrderPopup: boolean = false;
+  coffeeOrdered: boolean = false;
+  selectedCoffee!: CoffeeDTO;
 
   @ViewChild('filterDropdown') filterDropdown!: ElementRef | undefined;
   @ViewChild('filterIcon') filterIcon!: ElementRef | undefined;
 
   ngOnInit() {
-    const nav = this.router.getCurrentNavigation();
+    // const nav = this.router.getCurrentNavigation();
+    // this.selectedBook = nav?.extras.state?.['selectedBook'];
 
-    this.selectedBook = nav?.extras.state?.['selectedBook'];
-    console.log('Selected Book in Coffee Component -- ', this.selectedBook);
+    const bookId = history.state.bookId;
+
+    if (bookId) {
+      this.bookService.getBookById(bookId).subscribe((data) => {
+        console.log('Selected Book in Coffee Component -- ', data);
+
+        this.selectedBook = data;
+      });
+    }
 
     this.coffeeService.getCoffees().subscribe((data) => {
       console.log('All the coffees in the db are -- ', data);
@@ -100,5 +116,23 @@ export class CoffeeComponent {
     this.router.navigate(['/checkout'], {
       state: { bookId: this.selectedBook.id },
     });
+  }
+
+  buyCoffee(coffee: any) {
+    this.OrderPopup = !this.OrderPopup;
+    this.selectedCoffee = coffee;
+    this.coffeeOrdered = false;
+
+    console.log('Selected Book -- ', this.selectedBook);
+    console.log('Selected Coffee -- ', this.selectedCoffee);
+
+    if (this.selectedBook) {
+      this.router.navigate(['/checkout'], {
+        state: {
+          bookId: this.selectedBook.id,
+          coffeeId: this.selectedCoffee.coffeeId,
+        },
+      });
+    }
   }
 }
