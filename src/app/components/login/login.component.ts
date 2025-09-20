@@ -37,4 +37,8 @@ export class LoginComponent {
       this.router.navigate(['/books']);
     });
   }
+
+  goToRegisteration() {
+    this.router.navigate(['/register']);
+  }
 }

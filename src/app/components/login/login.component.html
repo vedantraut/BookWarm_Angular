@@ -24,6 +24,8 @@
     <button type="submit" [disabled]="!loginForm.valid" (click)="onLogin()">
       Login
     </button>
-    <button type="button" class="register-btn">Register</button>
+    <button type="button" class="register-btn" (click)="goToRegisteration()">
+      Register
+    </button>
   </form>
 </div>
