@@ -1,31 +1,35 @@
 <div class="checkout-container">
-  @if(selectedBook){
-  <div class="book-details">
-    <img
-      [src]="selectedBook.imageUrl"
-      alt="{{ selectedBook.title }}"
-      class="book-image"
-    />
-    <div class="book-info">
-      <h2>{{ selectedBook.title }}</h2>
-      <p>By {{ selectedBook.authorName }}</p>
-      <p class="price">Price: ₹{{ selectedBook.price }}</p>
+  <div class="items-container">
+    @if(selectedBook){
+    <div class="book-details">
+      <img
+        [src]="selectedBook.imageUrl"
+        alt="{{ selectedBook.title }}"
+        class="book-image"
+      />
+      <div class="book-info">
+        <h2>{{ selectedBook.title }}</h2>
+        <p>By {{ selectedBook.authorName }}</p>
+        <p class="price">Price: ₹{{ selectedBook.price }}</p>
+      </div>
     </div>
-  </div>
-  } @if(selectedCoffee){
-  <div class="coffee-details">
-    <img
-      [src]="selectedCoffee.imageUrl"
-      alt="{{ selectedCoffee.name }}"
-      class="coffee-image"
-    />
-    <div class="coffee-info">
-      <h2>{{ selectedCoffee.name }}</h2>
-      <p>Type: {{ selectedCoffee.coffeeType }}</p>
-      <p class="price">Price: ₹{{ selectedCoffee.price }}</p>
+    } @if(selectedCoffee){
+    <div class="coffee-details">
+      <img
+        [src]="selectedCoffee.imageUrl"
+        alt="{{ selectedCoffee.name }}"
+        class="coffee-image"
+      />
+      <div class="coffee-info">
+        <h2>{{ selectedCoffee.name }}</h2>
+        <p>Type: {{ selectedCoffee.coffeeType }}</p>
+        <p class="price">Price: ₹{{ selectedCoffee.price }}</p>
+      </div>
     </div>
+    }
   </div>
-  } @if(selectedBook || selectedCoffee){
+
+  @if(selectedBook || selectedCoffee){
   <div class="order-summary">
     <h3>Order Summary</h3>
     <p>

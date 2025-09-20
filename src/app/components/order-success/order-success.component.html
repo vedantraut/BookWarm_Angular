@@ -14,19 +14,22 @@
         <p class="book-price">Price: ₹{{ orderedBook.price }}</p>
       </div>
       <!-- </div> -->
+
+      @if(orderedCoffee.coffeeId != 0) {
       <p class="msg">Paired With a good cup of...</p>
-      <!-- <div class="coffee-section"> -->
-      <img
-        [src]="orderedCoffee.imageUrl"
-        alt="{{ orderedCoffee.name }}"
-        class="coffee-image"
-      />
-      <div class="coffee-info">
-        <h3 class="coffee-name">{{ orderedCoffee.name }}</h3>
-        <p class="coffee-type">{{ orderedCoffee.coffeeType }}</p>
-        <p class="coffee-price">Price: ₹{{ orderedCoffee.price }}</p>
+      <div class="coffee-section">
+        <img
+          [src]="orderedCoffee.imageUrl"
+          alt="{{ orderedCoffee.name }}"
+          class="coffee-image"
+        />
+        <div class="coffee-info">
+          <h3 class="coffee-name">{{ orderedCoffee.name }}</h3>
+          <p class="coffee-type">{{ orderedCoffee.coffeeType }}</p>
+          <p class="coffee-price">Price: ₹{{ orderedCoffee.price }}</p>
+        </div>
       </div>
-      <!-- </div> -->
+      }
     </div>
   </div>
   <p>Thank you for coming to <span class="brand">BookWarm</span>!</p>
