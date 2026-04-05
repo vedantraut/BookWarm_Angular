@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { AuthenticationRequest } from '../../models/authentication-request';
 import { Router } from '@angular/router';
+import { ErrorNotificationService } from '../../services/error-notification.service';
 
 @Component({
   selector: 'app-login',
@@ -21,20 +22,30 @@ export class LoginComponent {
     password: '',
   };
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private errorNotificationService: ErrorNotificationService
+  ) {}
 
   ngOnInit() {}
 
   onLogin() {
-    console.log('Email:', this.authRequest.emailId);
-    console.log('Password:', this.authRequest.password);
-
-    this.loginService.login(this.authRequest).subscribe((response: any) => {
-      console.log('Login response:', response);
-      // Handle successful login response
-      localStorage.setItem('authToken', response.token);
-
-      this.router.navigate(['/books']);
+    this.loginService.login(this.authRequest).subscribe({
+      next: (response: any) => {
+        console.log('Login response:', response); 
+        // Handle successful login response
+        localStorage.setItem('authToken', response.token);
+        this.router.navigate(['/books']);
+      },
+      error: (error: any) => {
+        console.error('Login error:', error);
+        const errorMessage = this.errorNotificationService.getErrorMessage(error);
+        this.errorNotificationService.showError(errorMessage);
+      },
+      complete: () => {
+        // console.log('Login request completed');
+      }
     });
   }
 

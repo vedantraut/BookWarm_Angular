@@ -61,6 +61,7 @@ export class CheckoutComponent {
 
     // Prepare order data cleanly
     this.orderdto = {
+      userId: 1, // Placeholder user ID; replace with actual user ID from auth context
       bookId: this.selectedBook.id,
       coffeeId: this.selectedCoffee ? this.selectedCoffee.coffeeId : -1,
     };
