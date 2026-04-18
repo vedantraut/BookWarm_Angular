@@ -36,6 +36,7 @@ export class LoginComponent {
         console.log('Login response:', response); 
         // Handle successful login response
         localStorage.setItem('authToken', response.token);
+        localStorage.setItem('userId', response.userId.toString());
         this.router.navigate(['/books']);
       },
       error: (error: any) => {

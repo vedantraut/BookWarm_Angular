@@ -1,1 +1,62 @@
-<p>order-history works!</p>
+<div class="order-history-shell">
+  <div class="page-header">
+    <div>
+      <p class="section-label">Order History</p>
+      <h1>Track your past purchases</h1>
+      <p class="subtitle">Review your books and coffee orders in one clean place.</p>
+    </div>
+  </div>
+
+  <div class="status-row" *ngIf="loading">
+    <div class="status-card">Loading your orders…</div>
+  </div>
+
+  <div class="status-row error" *ngIf="!loading && errorMessage">
+    <div class="status-card">{{ errorMessage }}</div>
+  </div>
+
+  <div *ngIf="!loading && !errorMessage">
+    <div class="empty-state" *ngIf="!orders?.length">
+      <div class="empty-icon">📦</div>
+      <h2>No past orders yet</h2>
+      <p>Your purchases will appear here once you've completed checkout.</p>
+    </div>
+
+    <div class="orders-grid" *ngIf="orders?.length">
+      <article class="order-card" *ngFor="let order of orders">
+        <div class="order-card-header">
+          <div>
+            <p class="order-id">Order {{ order?.orderId ?? order?.id ?? '—' }}</p>
+            <h2>{{ getBookLabel(order) }}</h2>
+          </div>
+          <span class="order-badge">{{ order?.status ?? 'Completed' }}</span>
+        </div>
+
+        <div class="order-summary">
+          <div class="summary-item">
+            <span>Order date</span>
+            <strong>{{ order?.orderDate ? (order.orderDate | date:'mediumDate') : 'Unknown' }}</strong>
+          </div>
+          <div class="summary-item">
+            <span>Book</span>
+            <strong>{{ getBookLabel(order) }}</strong>
+          </div>
+          <div class="summary-item">
+            <span>Coffee</span>
+            <strong>{{ getCoffeeLabel(order) }}</strong>
+          </div>
+          <div class="summary-item">
+            <span>Total</span>
+            <strong>
+              {{ order?.total || order?.amount || order?.price ? '₹' + (order.total ?? order.amount ?? order.price) : 'Pending' }}
+            </strong>
+          </div>
+        </div>
+
+        <div class="order-footer">
+          <small>Order details are stored securely and appear in your personal order history.</small>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
