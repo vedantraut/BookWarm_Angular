@@ -11,5 +11,11 @@
     <a href="/contact">Contact Us</a> -->
 
     <button class="coffee-btn" [routerLink]="'/coffee'">I want Coffee!</button>
+    
+    @if(isLoggedIn) {
+      <button class="order-history-btn" [routerLink]="'/order-history'" title="View your orders">
+        <mat-icon>receipt_long</mat-icon>
+      </button>
+    }
   </div>
 </nav>

@@ -41,3 +41,27 @@
 .coffee-btn:hover {
   background: #7d1bbd;
 }
+
+.order-history-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a71cec;
+  margin-left: 12px;
+}
+
+.order-history-btn:hover {
+  background: rgba(167, 28, 236, 0.1);
+  transform: scale(1.1);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}

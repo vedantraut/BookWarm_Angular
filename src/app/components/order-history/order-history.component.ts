@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-order-history',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './order-history.component.html',
   styleUrl: './order-history.component.css'
 })
-export class OrderHistory {
+export class OrderHistory implements OnInit {
   orders: any[] = [];
   loading = true;
   errorMessage = '';
@@ -42,7 +43,13 @@ export class OrderHistory {
   }
 
   getCoffeeLabel(order: any) {
-    return order?.coffeeName ?? order?.coffee?.title ?? order?.coffee?.name ?? 'No coffee selected';
+    let coffeeLabel = order?.coffee ?? order?.coffee?.title ?? order?.coffee?.name ?? 'No coffee selected';
+    
+    if(coffeeLabel === '-1'){
+      coffeeLabel = 'No coffee selected';
+    }
+    
+    return coffeeLabel;
   }
 }
 
