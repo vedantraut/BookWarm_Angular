@@ -29,6 +29,9 @@ export class OrderHistory implements OnInit {
       next: (result: any) => {
         this.orders = Array.isArray(result) ? result : result?.orders ?? [];
         this.loading = false;
+
+        console.log("Orders for user - ", userId," ", this.orders);
+        
       },
       error: (error: any) => {
         console.error('Order history error:', error);

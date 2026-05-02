@@ -50,6 +50,12 @@
                   <span>Book</span>
                   <strong>{{ getBookLabel(order) }}</strong>
                 </div>
+                <div class="summary-item image-item">
+                  <span>Cover</span>
+                  <div class="image-preview">
+                    <img [src]="order?.imageUrl" [alt]="order?.bookTitle">
+                  </div>
+                </div>
                 <div class="summary-item">
                   <span>Coffee</span>
                   <strong>{{ getCoffeeLabel(order) }}</strong>
@@ -57,13 +63,9 @@
                 <div class="summary-item">
                   <span>Total</span>
                   <strong>
-                    {{ order?.total || order?.amount || order?.price ? '₹' + (order.total ?? order.amount ?? order.price) : 'Pending' }}
+                    {{ order?.totalPrice ? '₹' + order.totalPrice : 'Pending' }}
                   </strong>
                 </div>
-              </div>
-      
-              <div class="order-footer">
-                <small>Order details are stored securely and appear in your personal order history.</small>
               </div>
             </article>
           }
