@@ -13,6 +13,7 @@ import { CoffeeService } from '../../services/coffee.service';
   styleUrl: './checkout.component.css',
 })
 export class CheckoutComponent {
+  userId: number | null = null;
   constructor(
     private router: Router,
     private bookService: BookService,
@@ -32,6 +33,9 @@ export class CheckoutComponent {
 
     const coffeeId = history.state.coffeeId || -1;
     console.log('Coffee ID in Checkout Component -- ', coffeeId);
+
+    const userIdString = localStorage.getItem('userId');
+    this.userId = userIdString ? parseInt(userIdString, 10) : null;
 
     // Run Only if BookId is present
     if (bookId) {
@@ -59,9 +63,16 @@ export class CheckoutComponent {
       return;
     }
 
+    // Validation: Ensure user is logged in
+    if (!this.userId) {
+      alert('Please log in to proceed with checkout.');
+      this.router.navigate(['/login']);
+      return;
+    }
+
     // Prepare order data cleanly
     this.orderdto = {
-      userId: 1, // Placeholder user ID; replace with actual user ID from auth context
+      userId: this.userId,
       bookId: this.selectedBook.id,
       coffeeId: this.selectedCoffee ? this.selectedCoffee.coffeeId : -1,
     };

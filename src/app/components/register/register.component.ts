@@ -39,7 +39,7 @@ export class RegisterComponent {
       },
       (error: any) => {
         console.error('Registration error:', error);
-        const errorMessage = this.errorNotificationService.getErrorMessage(error);
+        const errorMessage = this.errorNotificationService.getErrorMessage(error.error);
         this.errorNotificationService.showError(errorMessage);
       }
     );

@@ -6,9 +6,11 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { RegisterComponent } from './components/register/register.component';
 import { OrderHistory } from './components/order-history/order-history.component';
+import { Home } from './components/home/home';
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: Home },
+  { path: 'login', component: LoginComponent },
   { path: 'books', component: BooksComponent },
   { path: 'coffee', component: CoffeeComponent },
   { path: 'checkout', component: CheckoutComponent },
