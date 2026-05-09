@@ -56,8 +56,8 @@ export class BooksComponent {
     //   book.title.toLowerCase().startsWith(this.searchText.toLowerCase())
     // );
 
-    console.log('Search Text -- ' + this.searchText);
-    console.log('Search By -- ' + this.searchBy);
+    // console.log('Search Text -- ' + this.searchText);
+    // console.log('Search By -- ' + this.searchBy);
 
     switch (this.searchBy) {
       case 'title':
@@ -88,7 +88,7 @@ export class BooksComponent {
     this.selectedBook = book;
     this.coffeeOrdered = false;
 
-    console.log('Selected Book -- ', this.selectedBook);
+    // console.log('Selected Book -- ', this.selectedBook);
   }
 
   closeOrderPopUp() {
@@ -104,7 +104,7 @@ export class BooksComponent {
   }
 
   checkout() {
-    console.log('Selected Book in Checkout -- ', this.selectedBook);
+    // // console.log('Selected Book in Checkout -- ', this.selectedBook);
 
     this.router.navigate(['/checkout'], {
       state: { bookId: this.selectedBook.id },

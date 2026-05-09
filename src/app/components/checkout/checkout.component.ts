@@ -40,7 +40,7 @@ export class CheckoutComponent {
     // Run Only if BookId is present
     if (bookId) {
       this.bookService.getBookById(bookId).subscribe((data) => {
-        console.log('Book details in Checkout Component -- ', data);
+        // // console.log('Book details in Checkout Component -- ', data);
 
         this.selectedBook = data;
       });
@@ -49,7 +49,7 @@ export class CheckoutComponent {
     // Run Only if coffeeId is present
     if (coffeeId != -1) {
       this.coffeeService.getCoffeeById(coffeeId).subscribe((data) => {
-        console.log('Coffee details in Checkout Component -- ', data);
+        // // console.log('Coffee details in Checkout Component -- ', data);
 
         this.selectedCoffee = data;
       });
@@ -77,11 +77,11 @@ export class CheckoutComponent {
       coffeeId: this.selectedCoffee ? this.selectedCoffee.coffeeId : -1,
     };
 
-    console.log('Processing checkout:', this.orderdto);
+    // // console.log('Processing checkout:', this.orderdto);
 
     this.checkoutservice.checkout(this.orderdto).subscribe({
       next: (response) => {
-        console.log('Checkout successful:', response);
+        // // console.log('Checkout successful:', response);
         this.navigateToSuccess();
       },
       error: (error) => {

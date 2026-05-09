@@ -49,7 +49,7 @@ export class CoffeeComponent {
 
     if (bookId) {
       this.bookService.getBookById(bookId).subscribe((data) => {
-        console.log('Selected Book in Coffee Component -- ', data);
+        // console.log('Selected Book in Coffee Component -- ', data);
 
         this.selectedBook = data;
       });
@@ -77,10 +77,10 @@ export class CoffeeComponent {
 
     const searchText = this.searchText.trim().toLowerCase();
 
-    console.log('Filtered Coffees -- ' + this.filteredCoffeesData);
+    // console.log('Filtered Coffees -- ' + this.filteredCoffeesData);
 
-    console.log('Search Text -- ' + this.searchText);
-    console.log('Search By -- ' + this.searchBy);
+    // console.log('Search Text -- ' + this.searchText);
+    // console.log('Search By -- ' + this.searchBy);
 
     switch (this.searchBy) {
       case 'name':
@@ -132,8 +132,8 @@ export class CoffeeComponent {
     this.selectedCoffee = coffee;
     this.coffeeOrdered = false;
 
-    console.log('Selected Book -- ', this.selectedBook);
-    console.log('Selected Coffee -- ', this.selectedCoffee);
+    // console.log('Selected Book -- ', this.selectedBook);
+    // console.log('Selected Coffee -- ', this.selectedCoffee);
 
     if (this.selectedBook) {
       this.router.navigate(['/checkout'], {

@@ -76,7 +76,7 @@ export class OrderSuccessComponent {
     // Run Only if BookId is present
     if (bookId) {
       this.bookService.getBookById(bookId).subscribe((data: any) => {
-        console.log('Book details in Order Success Component -- ', data);
+        // console.log('Book details in Order Success Component -- ', data);
 
         this.orderedBook = data;
       });
@@ -85,7 +85,7 @@ export class OrderSuccessComponent {
     // Run Only if coffeeId is present
     if (coffeeId != -1) {
       this.coffeeService.getCoffeeById(coffeeId).subscribe((data: any) => {
-        console.log('Coffee details in Order Success Component -- ', data);
+        // console.log('Coffee details in Order Success Component -- ', data);
 
         this.orderedCoffee = data;
       });

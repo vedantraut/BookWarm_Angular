@@ -33,7 +33,7 @@ export class RegisterComponent {
     console.log('registerRequest:', this.registerRequest);
     this.registerService.register(this.registerRequest).subscribe(
       (response: any) => {
-        console.log('Registration response:', response);
+        // console.log('Registration response:', response);
         alert('Registration successful! Please login.');
         this.router.navigate(['/login']);
       },
