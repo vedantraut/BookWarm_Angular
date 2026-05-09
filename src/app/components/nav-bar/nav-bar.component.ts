@@ -17,6 +17,14 @@ export class NavBarComponent {
     return !!localStorage.getItem('userId');
   }
 
+  get isOnCoffeePage(): boolean {
+    return this.router.url === '/coffee';
+  }
+
+  get isOnBooksPage(): boolean {
+    return this.router.url === '/books';
+  }
+
   logout() {
     localStorage.removeItem('userId');
     this.router.navigate(['/login']);

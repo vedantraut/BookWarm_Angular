@@ -42,6 +42,21 @@
   background: #7d1bbd;
 }
 
+.books-btn {
+  background: #7c2cf9;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.books-btn:hover {
+  background: #6b23dd;
+}
+
 .order-history-btn {
   background: none;
   border: none;
