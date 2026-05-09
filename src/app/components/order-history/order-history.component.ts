@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 import { OrderService } from '../../services/order.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class OrderHistory implements OnInit {
   loading = true;
   errorMessage = '';
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService, private location: Location) {}
 
   ngOnInit() {
     const userIdString = localStorage.getItem('userId');
@@ -43,6 +44,10 @@ export class OrderHistory implements OnInit {
 
   getBookLabel(order: any) {
     return order?.bookTitle ?? order?.bookName ?? order?.book?.title ?? 'Book details unavailable';
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   getCoffeeLabel(order: any) {
