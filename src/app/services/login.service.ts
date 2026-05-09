@@ -13,4 +13,8 @@ export class LoginService {
   login(request: any) {
     return this.Http.post(this.url + 'users/login', request);
   }
+
+  getUser(userId: any) {
+    return this.Http.get(this.url + 'users/' + userId);
+  }
 }

@@ -5,6 +5,7 @@ import { BookDTO } from '../../models/bookDTO';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-books',
@@ -14,8 +15,10 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
   styleUrls: ['./books.component.css'],
 })
 export class BooksComponent {
-  constructor(private bookservice: BookService, private router: Router) {}
-
+  constructor(private bookservice: BookService, private router: Router, private loginservice: LoginService) {}
+  
+  userName: any;
+  userId: number | null = null;
   booksData: BookDTO[] = [];
   // filteredBooksData: BookDTO[] = [];
   searchText: string = '';
@@ -31,6 +34,11 @@ export class BooksComponent {
   @ViewChild('filterIcon') filterIcon!: ElementRef | undefined;
 
   ngOnInit() {
+    const userIdString = localStorage.getItem('userId');
+    this.userId = userIdString ? parseInt(userIdString, 10) : null;
+
+    this.getUserName();
+
     this.bookservice.getAllBooks().subscribe((data) => {
       console.log('all the books -- ', data);
       this.booksData = data as any[];
@@ -118,5 +126,11 @@ export class BooksComponent {
     ) {
       this.toggleFilterDropdown = false;
     }
+  }
+
+  getUserName(): any {
+    this.loginservice.getUser(this.userId).subscribe((data: any) => {
+      this.userName = data.userName;
+    });
   }
 }

@@ -1,55 +1,59 @@
 <app-nav-bar> </app-nav-bar>
 
-<div class="search-container">
-  <input
-    type="text"
-    placeholder="Find your favorite book"
-    [(ngModel)]="searchText"
-  />
+<div class="books-shell">
+  <div class="search-container">
+    <div class="search-row">
+      <input
+        type="text"
+        placeholder="Find your favorite book"
+        [(ngModel)]="searchText"
+      />
 
-  <div class="filter-wrapper">
-    <span class="filter-icon" #filterIcon (click)="toggleFilter()">
-      <i class="fas fa-filter"></i>
-    </span>
+      <div class="filter-wrapper">
+        <span class="filter-icon" #filterIcon (click)="toggleFilter()">
+          <i class="fas fa-filter"></i>
+        </span>
 
-    @if( toggleFilterDropdown) {
-    <div class="filter-dropdown" #filterDropdown>
-      <label>
-        <input
-          type="radio"
-          name="filter"
-          value="title"
-          [(ngModel)]="searchBy"
-        />
-        Title
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="filter"
-          value="author"
-          [(ngModel)]="searchBy"
-        />
-        Author
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="filter"
-          value="price"
-          [(ngModel)]="searchBy"
-        />
-        Price
-      </label>
-      <!-- <select [(ngModel)]="searchBy">
-        <option value="title">Title</option>
-        <option value="author">Author Name</option>
-        <option value="price">Price</option>
-      </select> -->
+        @if( toggleFilterDropdown) {
+        <div class="filter-dropdown" #filterDropdown>
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              value="title"
+              [(ngModel)]="searchBy"
+            />
+            Title
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              value="author"
+              [(ngModel)]="searchBy"
+            />
+            Author
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              value="price"
+              [(ngModel)]="searchBy"
+            />
+            Price
+          </label>
+        <!-- <select [(ngModel)]="searchBy">
+          <option value="title">Title</option>
+          <option value="author">Author Name</option>
+          <option value="price">Price</option>
+        </select> -->
+        </div>
+        }
+      </div>
     </div>
-    }
-  </div>
-</div>
+
+    <p class="welcome-message">Hi {{ userName }}! What would you like to read today?</p>
 
 <div class="book-grid">
   <!-- <div *ngIf="filteredBooks.length > 0; else noBooksFound"></div> -->
