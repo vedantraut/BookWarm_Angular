@@ -27,7 +27,7 @@ export class CoffeeComponent {
   coffeeData: CoffeeDTO[] = [];
   filteredCoffeesData: CoffeeDTO[] = [];
   searchText: string = '';
-  searchBy: any;
+  searchBy: string = 'name';
   toggleFilterDropdown: boolean = false;
   selectedBook: any;
   OrderPopup: boolean = false;
