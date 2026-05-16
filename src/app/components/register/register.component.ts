@@ -25,7 +25,7 @@ export class RegisterComponent {
       email: '',
       userName: '',
       password: '',
-      role: 'user',
+      role: 'ROLE_USER',
     };
   }
 
