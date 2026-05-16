@@ -3,11 +3,11 @@ import { BookService } from '../../services/book.service';
 import { CheckoutService } from '../../services/checkout.service';
 import { Router, RouterLink } from '@angular/router';
 import { CoffeeService } from '../../services/coffee.service';
-import { BookDTO } from '../../models/bookDTO';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-order-success',
-  imports: [RouterLink],
+  imports: [RouterLink, NavBarComponent],
   templateUrl: './order-success.component.html',
   styleUrl: './order-success.component.css',
 })

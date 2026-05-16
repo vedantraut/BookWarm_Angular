@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { OrderService } from '../../services/order.service';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+
 
 @Component({
   selector: 'app-order-history',
-  imports: [CommonModule],
+  imports: [CommonModule, NavBarComponent],
   templateUrl: './order-history.component.html',
   styleUrl: './order-history.component.css'
 })

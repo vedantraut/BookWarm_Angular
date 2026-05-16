@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookService } from '../../services/book.service';
-import { BookDTO } from '../../models/bookDTO';
 import { CheckoutService } from '../../services/checkout.service';
 import { OrderDTO } from '../../models/orderDTO';
 import { CoffeeService } from '../../services/coffee.service';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+
 
 @Component({
   selector: 'app-checkout',
-  imports: [],
+  imports: [NavBarComponent],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css',
 })

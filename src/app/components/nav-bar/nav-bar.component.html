@@ -14,9 +14,10 @@
       <button class="books-btn" [routerLink]="'/books'">I want Book!</button>
     } @else if(isOnBooksPage) {
       <button class="coffee-btn" [routerLink]="'/coffee'">I want Coffee!</button>
-    } @else {
+    } 
+    <!-- @else {
       <button class="coffee-btn" [routerLink]="'/coffee'">I want Coffee!</button>
-    }
+    } -->
     
     @if(isLoggedIn) {
       <button class="order-history-btn" [routerLink]="'/order-history'" title="View your orders">
